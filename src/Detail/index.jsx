@@ -1,5 +1,4 @@
 import { useNavigate, useParams } from "react-router-dom";
-import Product from "../Product";
 
 function Detail({product}){
   // detail/2 ->pathvariable 값을 확인
