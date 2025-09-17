@@ -11,7 +11,7 @@ function Detail({product}){
   //가져온 pathVariable값을 -> 숫자
   //props로 전달받은 product 배열에서 해당하는 객체만 찾아요...
   const findProduct = product.find(item => {
-    return item.id == Number(id-1);
+    return item.id == Number(id);
   })
 
   //해당하는 제품이 존재하지 않을 때 처리
