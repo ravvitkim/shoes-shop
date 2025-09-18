@@ -1,7 +1,7 @@
 import "./App.css";
 import AppNavBar from "./AppNavBar";
 // assets 폴더 내의 이미지 사용법 -> import 해서 사용
-import bg_png from "./assets/images/bg.png"
+
 
 import data from "./data/data";
 import { useState } from "react";
@@ -19,10 +19,7 @@ function App() {
       {/* 네비게이션 바 영역 시작 */}
       <AppNavBar />
       {/* 네비게이션 바 영역 끝 */}
-      {/* 메인 대문사진 영역 시작 */}
-      <div className="main-bg" 
-        style={{backgroundImage: `url('${bg_png}')`}}  
-      />
+      
       {/* 메인 대문사진 영역 끝 */}
       {/* Routing 정보를 한꺼번에 모아놓는 장소 */}
       {/* 스프링에서 사용하는 컨트롤러 클래스 */}
