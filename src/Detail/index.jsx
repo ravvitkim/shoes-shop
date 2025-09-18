@@ -1,6 +1,37 @@
+import { useEffect, useState } from "react";
 import { useNavigate, useParams } from "react-router-dom";
+import Discount from "../Discount";
 
 function Detail({product}){
+
+  const [showAlert, setShowAlert] = useState(true)
+  const [inputData, setInputData] = useState('')
+  //숫자말고 문자 입력시 처리를 확인 할 논리값
+  const [state, setState] = useState(true)
+
+  //userEffect 실행 확인
+  useEffect(()=>{
+    //타이머를 붙이고 2초 후에 Discount가 사라지도록
+    const myTimer = setTimeout(()=> setShowAlert(false), 2000);
+    // 기존에 사용한 타이머를 삭제
+    return ()=>{
+      clearTimeout(myTimer);
+    }
+    //처음 실행될 때 딱 한번만 실행
+  },[])
+  // 입력 수량 확인 용 Effect
+  //input상자에만 반응
+  useEffect(()=>{
+    //inputData state가 문자면...
+    //isNaN : is not a number
+    if(isNaN(inputData)){
+      setState(false)
+    }else{
+      setState(true)
+    }
+  }, [inputData])
+
+
   // detail/2 ->pathvariable 값을 확인
   //hook : useParams
   //파라미터를 변수로 저장할 때는 중괄호 사용 필수
@@ -24,6 +55,9 @@ function Detail({product}){
   
   return(
     <div className="container">
+      <div className="container mt-2">
+          {showAlert && <Discount />}
+        </div>
       <div className="row">
         <div className="col-md-6">
           <img src={`/images/shoes${findProduct.id +1}.jpg`}
@@ -32,6 +66,11 @@ function Detail({product}){
         <div className="col-md-6">
           <h4 className="pt-5">{findProduct.title}</h4>
           <p>{findProduct.content}</p>
+          {/* 문자가 들어올 때 출력할 내용 */}
+          {! state && <div>오류</div>}
+          <p>수량 : 
+            <input type="text" onChange={(e)=>{setInputData(e.target.value)}}/>
+          </p>
           <p>{findProduct.price}</p>
           <button className="btn btn-danger">주문하기</button>
         </div>
