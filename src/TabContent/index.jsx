@@ -2,8 +2,10 @@ import { useEffect, useState } from "react";
 import Shipping from "../TabInfo/Shipping";
 import SizeGuide from "../TabInfo/SizeGuide";
 import DetailInfo from "../TabInfo/detailInfo";
+import ReviewList from "../ReviewList";
 
-function TabContent({tabState,id}) {
+
+function TabContent({tabState,id, reviewList}) {
   //fade값으로 css를 지정하도록...
   let [fade, setFade] = useState('')
  
@@ -28,6 +30,7 @@ function TabContent({tabState,id}) {
         <div><DetailInfo id={id}/></div>,
         <div><SizeGuide/></div>,
         <div><Shipping/></div>,
+        <div><ReviewList reviewList={reviewList} productId={id} /></div>
       ][tabState]}
     </div>
   )
