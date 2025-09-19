@@ -6,3 +6,12 @@
   background-size: cover;
   background-position: center;
 }
+
+.ani-start{
+  /* 요소를 완전히 투명하게 시작 */
+  opacity: 0;
+}.ani-end{
+  /* 요소를 완전히 투명하게 시작 */
+  opacity: 1;
+  transition: opacity 0.5s;
+}
