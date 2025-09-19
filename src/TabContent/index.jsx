@@ -1,37 +1,35 @@
 import { useEffect, useState } from "react";
-import Shipping from "../TabInfo/Shipping";
+import DetailInfo from "../TabInfo/DetailInfo";
 import SizeGuide from "../TabInfo/SizeGuide";
-import DetailInfo from "../TabInfo/detailInfo";
-import ReviewList from "../ReviewList";
+import Shipping from "../TabInfo/Shipping";
+import Review from "../TabInfo/Review";
 
-
-function TabContent({tabState,id, reviewList}) {
-  //fade값으로 css를 지정하도록...
+function TabContent({tabState, id, review}){
+  // fade 값으로 css를 지정하도록 ...
   let [fade, setFade] = useState('')
- 
 
-  //useEffect로 타이머를 실행
-  //0.2초 후에 fade = ani_end로 바꿔줌
+  // useEffect로 타이머를 실행
+  // 0.2초 후에 fade = ani_end로 바꿔줌
   useEffect(()=>{
-    let timer = setTimeout(()=>{
+    let timer = setTimeout(() => {
       setFade('ani_end')
-    },100)
-    return(()=>{
-      clearTimeout(timer);
-      setFade('')
-    })
-  },[tabState]
-)
+      }, 100);
+      return(()=>{
+        clearTimeout(timer);
+        setFade('')
+      })
+    }, [tabState]
+  )
 
-
-  return (
+  return(
     <div className={`ani_start ${fade}`}>
-      {[
-        <div><DetailInfo id={id}/></div>,
-        <div><SizeGuide/></div>,
-        <div><Shipping/></div>,
-        <div><ReviewList reviewList={reviewList} productId={id} /></div>
-      ][tabState]}
+      {
+        [
+          <DetailInfo id={id}/>,
+          <SizeGuide />,
+          <Shipping />,
+          <Review review={review}/>
+        ][tabState]}
     </div>
   )
 }

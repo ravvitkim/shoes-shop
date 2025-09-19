@@ -1,18 +1,22 @@
 import "./App.css";
 import AppNavBar from "./AppNavBar";
 // assets 폴더 내의 이미지 사용법 -> import 해서 사용
-
-
+import Cart from './Cart';
+import { UserContext } from "./context/UserContext";
 import data from "./data/data";
-import { useState } from "react";
+import { useState, useContext } from "react";
 import { Routes, Route } from "react-router-dom";
 import Detail from "./Detail";
 import About from "./About";
 import Home from "./Home";
 
+
+
 function App() {
   // 상품정보를 갖는 product 스테이트를 만든다.
   const [product, setProduct] = useState(data);
+  // Context에 저장되어 있는 정보를 변수에 담는 작업 
+  const {loginUser} = useContext(UserContext);
 
   return (
     <>
@@ -27,7 +31,7 @@ function App() {
         <Route path="/" element={<Home product={product} setProduct={setProduct}/>} />
         {/* /detail/2->Pathvariable 설정 법 */}
         <Route path="/detail/:id" element={<Detail product={product} />} />
-        <Route path="/cart" element={<div>장바구니페이지</div>} />
+        <Route path="/cart" element={<Cart />} />
         {/* 중첩라우팅 처리 */}
         <Route path="/about" element={<About/>}>
           {/* /about/member */}
