@@ -106,7 +106,7 @@ function Detail({product}){
       </Nav.Item>
     </Nav>
     {/* 선택한 탭의내용이 표시되는 공간 */}
-    <TabContent tabState={tabState}/>
+    <TabContent tabState={tabState} id={findProduct.id}/>
     </div>
   )
 }
