@@ -18,8 +18,8 @@ function AppNavBar(){
   //store에서 정보 가져오기 (zustand사용)
   const {userName, productStock, productName, changeName, addProduct} = userStore();
 
-  console.log(productName)
-  console.log(productStock)
+  // console.log(productName)
+  // console.log(productStock)
 
 
   const navigate = useNavigate();
