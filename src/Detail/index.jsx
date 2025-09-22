@@ -1,14 +1,20 @@
-import { useEffect, useState } from "react";
+import { useContext, useEffect, useState } from "react";
 import { useNavigate, useParams } from "react-router-dom";
 import Discount from "../Discount";
 import Nav from 'react-bootstrap/Nav';
 import TabContent from "../TabContent";
 import axios from "axios";
 import { UserContext } from "../context/UserContext";
+import cartStore from "../store/cartStore"
+import { formatKRW } from "../util/formatKRW";
 
 function Detail({product}){
 
-  // const {loginUser } = UserContext(UserContext);
+  const { addItem } = cartStore();
+
+  const [showCart, setShowCart] = useState(false)
+
+  const {loginUser} = useContext(UserContext);
 
   let [detailFade, setDetailFade] = useState('');
 
@@ -127,9 +133,26 @@ function Detail({product}){
             <input type="text" 
               onChange={(e)=>{setInputData(e.target.value)}}/>
           </p> */}
-          <p>{findProduct.price}</p>
+          <p>{formatKRW(findProduct.price)}</p>
+          {/* 로그인 사용자의 이메일 출력 */}
           {/* <p>{loginUser.email}</p> */}
-          <button className="btn btn-danger">주문하기</button>
+          { !showCart && 
+            <button className="btn btn-danger" 
+            onClick={()=>{
+              addItem(findProduct)
+              setShowCart(true)
+            }}>
+            주문하기</button>
+          }
+
+          { showCart && 
+            <button className="btn btn-primary" 
+            onClick={()=>{
+              setShowCart(false)
+              navigate('/cart')
+            }}>
+            카트보기</button>
+          }
         </div>
       </div>
       <Nav variant="tabs" activeKey={`link-${tabState}`}>
