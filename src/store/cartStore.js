@@ -11,12 +11,16 @@ const cartstore = create(immer((set)=>(
         const idx = state.cartData.findIndex((x)=>x.id === id);
         if(idx !== -1) state.cartData[idx].count++
       }),
-     minusCount: (id) =>
-      set((state)=>{
-        const idx = state.cartData.findIndex((x)=>x.id === id);
-        if(idx !== -1 && !(state.cartData[idx].count === 0)) 
-          state.cartData[idx].count-= 1
- 
+    minusCount: (id) =>
+      set((state) => {
+        const idx = state.cartData.findIndex((x) => x.id === id);
+        if (idx !== -1) {
+          if (state.cartData[idx].count === 1) {
+            alert("최소 수량은 1입니다.");
+          } else {
+            state.cartData[idx].count -= 1;
+          }
+        }
       }),
       
 
