@@ -9,6 +9,7 @@ import { Routes, Route } from "react-router-dom";
 import Detail from "./Detail";
 import About from "./About";
 import Home from "./Home";
+import Recent from "./Recent";
 
 
 
@@ -38,6 +39,7 @@ function App() {
           <Route path="member" element={<div>Member Page</div>}></Route>
           <Route path="location" element={<div>Location Page</div>}></Route>
         </Route>
+        <Route path="/recent" element={<Recent/>} />
         <Route path="*" element={<div>Page Not Found 404 Error</div>}></Route>
       </Routes>
       
